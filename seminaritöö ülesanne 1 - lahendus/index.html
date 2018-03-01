@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue vorm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="harjutus">
+		<div class="container">
+			<form v-if="!sisestatud">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+						<div class="form-group">
+							<label>Eesnimi</label>
+							<input type="text" class="form-control" v-model="eesNimi">
+						</div>
+						<div class="form-group">
+							<label>Perekonnanimi</label>
+							<input type="text" class="form-control" v-model="perekonnaNimi">
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+							<input type="text" class="form-control" v-model="email">
+						</div>
+						<div class="form-group">
+							<label>Parool</label>
+							<input type="password" class="form-control" v-model="parool">
+						</div>
+						<div class="form-group">
+							<label>
+								<input type="radio" value="true" v-model="salvestaAndmed"> Jah
+							</label>
+							<label>
+								<input type="radio" value="false" v-model="salvestaAndmed"> Ei
+							</label>
+						</div>
+					</div>
+				</div>
+				<button class="btn btn-primary" @click.prevent="sisestaVorm">Submit</button>
+			</form>
+			<div class="row" v-else>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>Teie andmed</h4>
+						</div>
+						<div class="panel-body">
+							<p>Full Name: {{ eesNimi }} {{ perekonnaNimi }}</p>
+							<p>Mail: {{ email }}</p>
+							<p>Password: {{ parool }}</p>
+							<p>Store in Database?: {{ salvestaAndmed }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </body>
+  <script>
+	new Vue ({
+		el: '#harjutus',
+		data: { 
+			eesNimi: "",
+			perekonnaNimi: "",
+			email: "",
+			parool: "",
+			salvestaAndmed: false,
+			sisestatud: false,
+		},
+		methods: {
+			sisestaVorm() {
+				this.sisestatud = true;
+			}
+		}
+	})
+  </script>
+</html>
